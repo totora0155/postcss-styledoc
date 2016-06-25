@@ -1,0 +1,143 @@
+@charset "utf-8";
+
+:root {
+  font-size: 14px;
+}
+
+body {
+  color: #333;
+  margin: 0;
+  background: #e2e2e2;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+pre {
+  margin: 0;
+}
+
+@prefix styledoc-theme-minimalist;
+
+.box {
+  display: flex;
+  min-height: 100vh;
+  width: $width;
+  margin: 0 auto;
+}
+
+.sidebar {
+  flex: 0 0 240px;
+}
+
+.list {
+  position: fixed;
+  width: 240px;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 1rem;
+  margin: 0;
+  line-height: 2;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.headline {
+  font-size: 2.3rem;
+  margin-bottom: 1.8rem;
+}
+
+.body {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100% + 2rem);
+  margin-left: -1rem;
+}
+
+.node {
+  overflow: hidden;
+  flex: 0 0 50%;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+.view {
+  padding: 1rem;
+  background: #fff;
+}
+
+.editor {
+  position: relative;
+  box-sizing: border-box;
+  padding: 1rem;
+  background: #333;
+  color: #f8f8f8;
+  font-family: 'Source Code Pro';
+  font-size: .83rem;
+  overflow: auto;
+}
+
+&:hover .clippy {
+  opacity: 1;
+}
+
+.clippy {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  opacity: 0;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+&:active path {
+  transition: .2s ease;
+  fill: #dd3a0a;
+}
+
+.clippy path {
+  transition: .2s ease 1s;
+  fill: #f8f8f8;
+}
+
+.summary {
+  padding: 1rem;
+  background: #ccc;
+}
+
+.footer {
+  text-align: center;
+  font-size: .85rem;
+}
+
+.powered-by {
+  padding: .5em;
+  background: linear-gradient(to right, #ccc 40%, transparent 40%, transparent 60%, #ccc 60%) repeat-x;
+  background-size: 33.3% 1px;
+}
+
+.powered-by-link {
+  color: #dd3a0a;
+}
+
+@prefix styledoc-code;
+
+.attr {
+  color: #dd3a0a;
+}
+
+.value {
+  color: #f3d37d;
+}

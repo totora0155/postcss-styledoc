@@ -1,0 +1,92 @@
+@styledoc Button {
+  a.btn[innerText="Button"]:
+    Medium button;
+  a.btn--small[innerText="Button"]:
+    Small button;
+  a.btn--large[innerText="Button"]:
+    Large button;
+}
+
+.btn {
+  background: #dd3a0a;
+  padding: .5em 1em;
+  width: inline-block;
+  color: #fff;
+  border-radius: 3px;
+  transition: .2s ease;
+}
+
+&:hover {
+   background: #b73008;
+}
+
+.btn--small {
+  @extend .btn;
+  font-size: .8rem;
+}
+
+.btn--large {
+  @extend .btn;
+  font-size: 1.3rem;
+}
+
+
+@styledoc Card {
+  .card__box>header.card__header+.card__body>.card__summary[innerText="text text text"]:
+    Normal card;
+  .card__box>header.card__header+.card__body>.card__user>img.card__img[src=//unsplash.it/300/?random]+.card__username[innerText=username]^span.card__summary[innerText="text text text"]:
+    Card with user;
+}
+
+@prefix card;
+
+.box {
+  width: 15rem;
+  border: 1px solid #eee;
+  box-shadow: 3px 3px 5px -3px #bbb;
+}
+
+.header {
+  height: 12rem;
+}
+
+.user {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.img {
+  display: inline-block;
+  width: 40%;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+.body {
+  padding: 1em;
+  border-top: 1px solid #eee;
+}
+
+@prefix;
+
+@styledoc Image {
+  img.img--square[src=//unsplash.it/300/?random]:
+    Square;
+
+  img.img--circle[src=//unsplash.it/300/?random]:
+    Circle;
+}
+
+.img--default {
+  width: 8rem;
+  height: 8rem;
+}
+
+.img--square {
+  @extend .img--default;
+}
+
+.img--circle {
+  @extend .img--default;
+  border-radius: 50%;
+}
