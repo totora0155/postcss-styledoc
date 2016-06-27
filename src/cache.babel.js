@@ -1,3 +1,3 @@
 export default {
-  _current: null
+  html: null
 };

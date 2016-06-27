@@ -9,8 +9,9 @@ export default function write(cbForDoc) {
     const clonedFile = file.clone();
     clonedFile.path = clonedFile.path.replace(/\..+/, '.html');
 
-    const $ = cheerio.load(cache._current.html);
+    const $ = cheerio.load(cache.html);
     const lastHistory = file.history[file.history.length - 1];
+
     const style = fs.readFileSync(lastHistory, 'utf-8');
     $('head').append(`<style>${style}</style>`);
     clonedFile.contents = new Buffer($.html());

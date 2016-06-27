@@ -30,6 +30,6 @@ export default postcss.plugin('postcss-styledoc', (opts) => {
 
       rule.remove();
     });
-    cache._current.html = doc.render();
+    cache.html = doc.render();
   };
 });

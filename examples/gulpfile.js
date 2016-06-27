@@ -10,7 +10,6 @@ const preref = require('postcss-preref');
 gulp.task('css', () => {
   gulp.src('src/**/*.css')
     .pipe(plumber())
-    .pipe(styledoc.init())
     .pipe(postcss([
       extend,
       namespace({token: '__'}),
