@@ -8,7 +8,7 @@ const namespace = require('postcss-namespace');
 const preref = require('postcss-preref');
 
 gulp.task('css', () => {
-  gulp.src('src/**/*.css')
+  gulp.src(['**/*.css', '!vender/**'], {cwd: 'src'})
     .pipe(plumber())
     .pipe(postcss([
       extend,
@@ -19,10 +19,11 @@ gulp.task('css', () => {
         themePath: styledoc.themes.MINIMALIST
       })
     ]))
-    .pipe(gulp.dest('.'))
-    .pipe(styledoc.write(stream => {
-      stream
-        .pipe(require('gulp-debug')())
+    .pipe(gulp.dest('./dist'))
+    .pipe(styledoc.write({
+      dependencies: ['dist/vender/*.css']
+    }, docStream => {
+      docStream
         .pipe(gulp.dest('styledoc'));
     }));
 });
