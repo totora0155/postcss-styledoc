@@ -9,13 +9,19 @@
   }
 }
 
+@matter {
+  btn {
+    padding: .5em 1em;
+    border-radius: 3px;
+    background: #dd3a0a;
+    text-decoration: none;
+    color: #fff;
+    transition: .2s ease;
+  }
+}
+
 .btn {
-  background: #dd3a0a;
-  padding: .5em 1em;
-  width: inline-block;
-  color: #fff;
-  border-radius: 3px;
-  transition: .2s ease;
+  matter: btn;
 }
 
 &:hover {
@@ -23,12 +29,12 @@
 }
 
 .btn--small {
-  @extend .btn;
+  matter: btn;
   font-size: .8rem;
 }
 
 .btn--large {
-  @extend .btn;
+  matter: btn;
   font-size: 1.3rem;
 }
 
@@ -82,9 +88,9 @@
 
 @styledoc Image {
   @html {
-    img.img--square[src=//unsplash.it/300/?random]:
+    img.img--square[src=//unsplash.it/200/?random]:
       Square;
-    img.img--circle[src=//unsplash.it/300/?random]:
+    img.img--circle[src=//unsplash.it/200/?random]:
       Circle;
   }
 }

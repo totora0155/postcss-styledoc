@@ -3,6 +3,7 @@ const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const postcss = require('gulp-postcss');
 const styledoc = require('..');
+const matter = require('postcss-matter');
 const extend = require('postcss-extend');
 const namespace = require('postcss-namespace');
 const preref = require('postcss-preref');
@@ -11,7 +12,7 @@ gulp.task('css:minimalist', () => {
   gulp.src(['**/*.css', '!dist/vender/**'], {cwd: 'src'})
     .pipe(plumber())
     .pipe(postcss([
-      extend,
+      matter,
       namespace.bem,
       preref,
       styledoc({

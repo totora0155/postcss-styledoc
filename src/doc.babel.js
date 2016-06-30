@@ -19,13 +19,13 @@ export default class Doc {
   render() {
     const template = (() => {
       const templatePath = path.resolve(this.themePath, 'template.html');
-      return fs.readFileSync(absPath);
-    });
+      return fs.readFileSync(templatePath);
+    })();
 
     const style = (() => {
       const stylePath = path.resolve(this.themePath, 'style.css');
-      return fs.readFileSync(absPath);
-    });
+      return fs.readFileSync(stylePath);
+    })();
 
     return _.template(template)({
       themeStyle: `<style>${style}</style>`,

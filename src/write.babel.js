@@ -29,9 +29,12 @@ export default function write(opts, cbForDoc) {
         }
         return css;
       }, ''));
-    } else if (cache.css) {
+    }
+
+    if (cache.css) {
       styles.push(cache.css);
     }
+    
     $('head').append(`<style>${styles.join('\n')}</style>`);
 
     clonedFile.contents = new Buffer($.html());

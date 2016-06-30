@@ -2,8 +2,8 @@ import _ from 'lodash';
 import cheerio from 'cheerio';
 
 export default class DecSection {
-  constructor(rule) {
-    this.name = rule.params;
+  constructor(name) {
+    this.name = name;
     this.nodes = [];
   }
 

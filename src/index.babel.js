@@ -23,11 +23,13 @@ export default postcss.plugin('postcss-styledoc', (opts) => {
       }
 
       styledoc.walkAtRules(HTML_AT_RULE, html => {
-        if (!_.filter(html.nodes, n => n.type === 'decl').length) {
+        const decls = _.filter(html.nodes, n => n.type === 'decl');
+
+        if (!decls.length) {
           return;
         }
 
-        const section = new DocSection(html);
+        const section = new DocSection(styledoc.params);
         doc.append(section);
         html.walkDecls(decl => {
           const node = new DocNode(decl);
