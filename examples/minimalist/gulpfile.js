@@ -1,12 +1,12 @@
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const postcss = require('gulp-postcss');
-const styledoc = require('..');
+const styledoc = require('../..');
 const matter = require('postcss-matter');
 const namespace = require('postcss-namespace');
 const preref = require('postcss-preref');
 
-gulp.task('css:minimalist', () => {
+gulp.task('css', () => {
   gulp.src(['**/*.css', '!dist/vender/**'], {cwd: 'src'})
     .pipe(plumber())
     .pipe(postcss([
@@ -20,14 +20,14 @@ gulp.task('css:minimalist', () => {
       dependencies: ['dist/vender/*.css']
     }, docStream => {
       docStream
-        .pipe(gulp.dest('styledoc-minimalist'));
+        .pipe(gulp.dest('styledoc'));
     }));
 });
 
-gulp.task('default', ['css:minimalist'], () => {
+gulp.task('default', ['css'], () => {
   gulp.watch([
     'src/**/*.css',
     'styledoc/**/*.css',
-    '../themes/minimalist/style.css'
-  ], ['css:minimalist']);
+    '../../themes/minimalist/style.css'
+  ], ['css']);
 });

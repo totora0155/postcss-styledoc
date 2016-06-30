@@ -1,5 +1,6 @@
 export default {
   themes: {
-    MINIMALIST: '../themes/minimalist'
+    ILLUMINATE: '../../themes/illuminate',
+    MINIMALIST: '../../themes/minimalist'
   }
 };
