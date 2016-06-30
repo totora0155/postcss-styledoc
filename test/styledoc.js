@@ -26,8 +26,10 @@ function transform() {
 }
 
 test('styledoc', async t => {
-  const result = await transform();
-  const cache = require('../build/cache').default;
+  const _cache = require('../build/cache');
+
+  await transform();
+  const cache = _cache.default;
   const $ = cheerio.load(cache.html);
   t.is($('#name').text(), 'Button');
   t.is($('#html').html(), '<div class="test"></div>');
