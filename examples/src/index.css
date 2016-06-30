@@ -1,10 +1,12 @@
 @styledoc Button {
-  a.btn[innerText="Button"]:
-    Medium button;
-  a.btn--small[innerText="Button"]:
-    Small button;
-  a.btn--large[innerText="Button"]:
-    Large button;
+  @html {
+    a.btn[innerText="Button"]:
+      Medium button;
+    a.btn--small[innerText="Button"]:
+      Small button;
+    a.btn--large[innerText="Button"]:
+      Large button;
+  }
 }
 
 .btn {
@@ -32,10 +34,19 @@
 
 
 @styledoc Card {
-  .card__box>header.card__header+.card__body>.card__summary[innerText="text text text"]:
-    Normal card;
-  .card__box>header.card__header+.card__body>.card__user>img.card__img[src=//unsplash.it/300/?random]+.card__username[innerText=username]^span.card__summary[innerText="text text text"]:
-    Card with user;
+  @html {
+    .card__box>header.card__header+.card__body>.card__summary[innerText="text text text"]:
+      Normal card;
+    .card__box>header.card__header+.card__body>.card__user>img.card__img[src=//unsplash.it/300/?random]+.card__username[innerText=username]^span.card__summary[innerText="text text text"]:
+      Card with user;
+  }
+
+  @css {
+    @prefix card;
+    .header {
+      background: url(//unsplash.it/300/?random);
+    }
+  }
 }
 
 @prefix card;
@@ -70,11 +81,12 @@
 @prefix;
 
 @styledoc Image {
-  img.img--square[src=//unsplash.it/300/?random]:
-    Square;
-
-  img.img--circle[src=//unsplash.it/300/?random]:
-    Circle;
+  @html {
+    img.img--square[src=//unsplash.it/300/?random]:
+      Square;
+    img.img--circle[src=//unsplash.it/300/?random]:
+      Circle;
+  }
 }
 
 .img--default {

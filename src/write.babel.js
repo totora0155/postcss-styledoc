@@ -16,25 +16,26 @@ export default function write(opts, cbForDoc) {
 
   return through.obj(function(file, enc, cb) {
     const clonedFile = file.clone();
-    clonedFile.path = clonedFile.path.replace(/\..+/, '.html');
-
     const $ = cheerio.load(cache.html);
-    const lastHistory = file.history[file.history.length - 1];
+    const styles = [clonedFile.contents.toString()];
 
-    let style = _.reduce(opts.dependencies, (css, pattern) => {
-      const filePaths = glob.sync(path.resolve(pattern));
-      if (filePaths.length) {
-        _.forEach(filePaths, filePath => {
-          css += `\n${fs.readFileSync(filePath, 'utf-8')}`
-        });
-      }
-      return css;
-    }, '');
-    style += fs.readFileSync(lastHistory, 'utf-8');
-    debugger;
-    $('head').append(`<style>${style}</style>`);
+    if (opts.dependencies) {
+      styles.unshift(_.reduce(opts.dependencies, (css, pattern) => {
+        const filePaths = glob.sync(path.resolve(pattern));
+        if (filePaths.length) {
+          _.forEach(filePaths, filePath => {
+            css += `\n${fs.readFileSync(filePath, 'utf-8')}`
+          });
+        }
+        return css;
+      }, ''));
+    } else if (cache.css) {
+      styles.push(cache.css);
+    }
+    $('head').append(`<style>${styles.join('\n')}</style>`);
 
     clonedFile.contents = new Buffer($.html());
+    clonedFile.path = clonedFile.path.replace(/[^.]+$/, 'html');
     cb(null, file);
     cbForDoc(es.readArray([clonedFile]));
   });

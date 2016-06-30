@@ -1,15 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
+import postcss from 'postcss';
 import cheerio from 'cheerio';
 import constant from './constant';
 
 export default class Doc {
-  constructor({style, themePath}) {
-    this.style = style;
+  constructor(atRule, {themePath}) {
+    this.atRule = atRule;
     this.themePath = themePath;
-    const absPath = path.resolve(this.themePath, 'template.html');
-    this.template = fs.readFileSync(absPath, 'utf-8');
     this.sections = [];
   }
 
@@ -18,12 +17,17 @@ export default class Doc {
   }
 
   render() {
-    const absPath = path.resolve(this.themePath, 'style.css');
-    let style = fs.readFileSync(absPath);
-    if (this.style) {
-      style += `\n${this.style}`;
-    }
-    return _.template(this.template)({
+    const template = (() => {
+      const templatePath = path.resolve(this.themePath, 'template.html');
+      return fs.readFileSync(absPath);
+    });
+
+    const style = (() => {
+      const stylePath = path.resolve(this.themePath, 'style.css');
+      return fs.readFileSync(absPath);
+    });
+
+    return _.template(template)({
       themeStyle: `<style>${style}</style>`,
       sections: this.sections
     });

@@ -1,3 +1,4 @@
-styledoc
+/styledoc*
+!/styledoc*/style/custom.css
 /dist/*
 /dist/venders/normalize.css

@@ -7,15 +7,14 @@ const extend = require('postcss-extend');
 const namespace = require('postcss-namespace');
 const preref = require('postcss-preref');
 
-gulp.task('css', () => {
-  gulp.src(['**/*.css', '!vender/**'], {cwd: 'src'})
+gulp.task('css:minimalist', () => {
+  gulp.src(['**/*.css', '!dist/vender/**'], {cwd: 'src'})
     .pipe(plumber())
     .pipe(postcss([
       extend,
-      namespace({token: '__'}),
+      namespace.bem,
       preref,
       styledoc({
-        style: fs.readFileSync('./styledoc/style/custom.css'),
         themePath: styledoc.themes.MINIMALIST
       })
     ]))
@@ -24,14 +23,15 @@ gulp.task('css', () => {
       dependencies: ['dist/vender/*.css']
     }, docStream => {
       docStream
-        .pipe(gulp.dest('styledoc'));
+        .pipe(require('gulp-debug')())
+        .pipe(gulp.dest('styledoc-minimalist'));
     }));
 });
 
-gulp.task('default', ['css'], () => {
+gulp.task('default', ['css:minimalist'], () => {
   gulp.watch([
     'src/**/*.css',
     'styledoc/**/*.css',
     '../themes/minimalist/style.css'
-  ], ['css']);
+  ], ['css:minimalist']);
 });

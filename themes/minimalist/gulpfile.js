@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const postcss = require('gulp-postcss');
 const pxtorem = require('postcss-pxtorem');
+const matter = require('postcss-matter');
 const defineIt = require('postcss-define-it');
 const namespace = require('postcss-namespace');
 const preref = require('postcss-preref');
@@ -21,6 +22,7 @@ gulp.task('css', () => {
           'letter-spacing', 'width', 'height'
         ]
       }),
+      matter,
       preref,
       namespace({token: '__'})
     ]))

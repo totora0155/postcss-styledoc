@@ -1,3 +1,4 @@
 export default {
-  html: null
+  html: '',
+  css: ''
 };
