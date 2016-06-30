@@ -18,12 +18,11 @@ export default class DocNode {
     const html = this.createElement(this.prop).outerHTML;
     return highlight(_.escape(prettyPrint(html)));
   }
-};
+}
 
 function createElement(prop) {
-
-  const selectors = prop.match(/([>+^]?)([^>+^]+)/g)
-  let root = createElementBySelector('#__root');
+  const selectors = prop.match(/([>+^]?)([^>+^]+)/g);
+  const root = createElementBySelector('#__root');
   _.reduce(selectors, (elem, selector) => {
     if (elem === null) {
       elem = createElementBySelector(selector);
@@ -33,37 +32,36 @@ function createElement(prop) {
       return elem;
     }
 
-    switch(selector[0]) {
-      case '>':
+    switch (selector[0]) {
+      case '>': {
         const child = createElementBySelector(selector.slice(1));
         resolveA(child);
         resolveText(child);
         elem.appendChild(child);
         return child;
-      case '+':
-        {
-          const next = createElementBySelector(selector.slice(1));
-          resolveA(next);
-          resolveText(next);
-          const innerText = next.getAttribute('innerText');
-          elem.parentElement.appendChild(next);
-          return next;
-        }
-      case '^':
-        {
-          const len = selector.match(/^\^+/)[0].length;
-          const next = createElementBySelector(selector.slice(len));
-          resolveA(next);
-          resolveText(next);
-          let parent = elem;
-          _.times(len, () => {
-            parent = elem.parentElement
-          });
-          parent.parentElement.appendChild(next);
-          return next;
-        }
-      default:
+      }
+      case '+': {
+        const next = createElementBySelector(selector.slice(1));
+        resolveA(next);
+        resolveText(next);
+        elem.parentElement.appendChild(next);
+        return next;
+      }
+      case '^': {
+        const len = selector.match(/^\^+/)[0].length;
+        const next = createElementBySelector(selector.slice(len));
+        resolveA(next);
+        resolveText(next);
+        let parent = elem;
+        _.times(len, () => {
+          parent = elem.parentElement;
+        });
+        parent.parentElement.appendChild(next);
+        return next;
+      }
+      default: {
         return;
+      }
     }
   }, null);
 

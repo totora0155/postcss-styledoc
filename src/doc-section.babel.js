@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import cheerio from 'cheerio';
 
 export default class DecSection {
   constructor(name) {
@@ -15,4 +14,4 @@ export default class DecSection {
   append(node) {
     this.nodes.push(node);
   }
-};
+}

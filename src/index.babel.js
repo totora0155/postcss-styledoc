@@ -10,9 +10,19 @@ const AT_RULE = 'styledoc';
 const HTML_AT_RULE = 'html';
 const CSS_AT_RULE = 'css';
 
-export default postcss.plugin('postcss-styledoc', (opts) => {
+const defaultOpts = {
+  themePath: null
+};
+
+export default postcss.plugin('postcss-styledoc', opts => {
   let doc = null;
+  opts = Object.assign({}, defaultOpts, opts);
+
   return (root, result) => {
+    if (opts.themePath === null) {
+      result.warn(`\`themePath\` option is required`, {node: root});
+    }
+
     root.walkAtRules(AT_RULE, styledoc => {
       if (typeof document === 'undefined') {
         global.document = jsdom('<body></body>');

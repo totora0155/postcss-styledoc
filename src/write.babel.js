@@ -14,7 +14,7 @@ const defaultOpts = {
 export default function write(opts, cbForDoc) {
   opts = Object.assign({}, defaultOpts, opts);
 
-  return through.obj(function(file, enc, cb) {
+  return through.obj((file, enc, cb) => {
     const clonedFile = file.clone();
     const $ = cheerio.load(cache.html);
     const styles = [clonedFile.contents.toString()];
@@ -24,7 +24,7 @@ export default function write(opts, cbForDoc) {
         const filePaths = glob.sync(path.resolve(pattern));
         if (filePaths.length) {
           _.forEach(filePaths, filePath => {
-            css += `\n${fs.readFileSync(filePath, 'utf-8')}`
+            css += `\n${fs.readFileSync(filePath, 'utf-8')}`;
           });
         }
         return css;
@@ -34,7 +34,7 @@ export default function write(opts, cbForDoc) {
     if (cache.css) {
       styles.push(cache.css);
     }
-    
+
     $('head').append(`<style>${styles.join('\n')}</style>`);
 
     clonedFile.contents = new Buffer($.html());
@@ -42,4 +42,4 @@ export default function write(opts, cbForDoc) {
     cb(null, file);
     cbForDoc(es.readArray([clonedFile]));
   });
-};
+}

@@ -1,9 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
-import postcss from 'postcss';
-import cheerio from 'cheerio';
-import constant from './constant';
 
 export default class Doc {
   constructor(atRule, {themePath}) {
@@ -19,12 +16,12 @@ export default class Doc {
   render() {
     const template = (() => {
       const templatePath = path.resolve(this.themePath, 'template.html');
-      return fs.readFileSync(templatePath);
+      return fs.readFileSync(templatePath, 'utf-8');
     })();
 
     const style = (() => {
       const stylePath = path.resolve(this.themePath, 'style.css');
-      return fs.readFileSync(stylePath);
+      return fs.readFileSync(stylePath, 'utf-8');
     })();
 
     return _.template(template)({
@@ -32,4 +29,4 @@ export default class Doc {
       sections: this.sections
     });
   }
-};
+}

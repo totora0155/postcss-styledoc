@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%= themeStyle %>
+</head>
+
+<body>
+  <% _.forEach(sections, section => { %>
+    <h1 id="name"><%=section.name%></h1>
+    <% _.forEach(section.nodes, node => { %>
+      <div id="html"><%=node.html%></div>
+      <div id="code"><%=node.code%></div>
+      <div id="summary"><%=node.summary%></div>
+    <% }) %>
+  <% }) %>
+</body>
+
+</html>
