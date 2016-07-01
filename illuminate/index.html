@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Styledoc</title>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+  <style>@charset "utf-8";
+
+:root {
+  font-size: 14px;
+}
+
+body {
+  color: #333;
+  margin: 0;
+  background: #e2e2e2;
+}
+
+.styledoc-theme-illuminate__box {
+  min-height: 100vh;
+  background: #1c1c1c;
+}
+
+.styledoc-theme-illuminate__gnavi {
+  position: fixed;
+  top: 0;
+  z-index: 9;
+  width: 100%;
+  height: 3.4rem;
+  background: #fff;
+}
+
+.styledoc-theme-illuminate__list {
+  list-style: none;
+  width: 91.42857rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 1rem 0;
+  margin: 0 auto;
+}
+
+.styledoc-theme-illuminate__item {
+  float: left;
+}
+
+.styledoc-theme-illuminate__item + .styledoc-theme-illuminate__item {
+  margin-left: 1rem;
+}
+
+.styledoc-theme-illuminate__itemlink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.styledoc-theme-illuminate__main {
+  padding: 6rem 0 3.4rem;
+}
+
+.styledoc-theme-illuminate__section {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  margin-bottom: 2.5rem;
+  background: #fff;
+}
+
+@media screen and (min-width: 1280px) {
+  .styledoc-theme-illuminate__inner {
+    width: 91.42857rem;
+    margin: 0 auto;
+  }
+}
+
+.styledoc-theme-illuminate__headline {
+  color: #1c1c1c;
+  font-size: 2.3rem;
+  margin-bottom: 1.8rem;
+}
+
+.styledoc-theme-illuminate__block {
+  display: flex;
+}
+
+.styledoc-theme-illuminate__node {
+  overflow: hidden;
+  flex: 1 1 auto;
+  max-width: 33.333%;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+.styledoc-theme-illuminate__summary {
+  font-weight: bold;
+  text-align: center;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.styledoc-theme-illuminate__summary span {
+  display: inline-block;
+  padding-bottom: .5em;
+  border-bottom: 3px solid #333;
+}
+
+.styledoc-theme-illuminate__view {
+  padding: 1rem;
+  box-shadow: inset 0 0 10px -6px rgba(0, 0, 0, .7);
+  background: #e2e2e2;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.styledoc-theme-illuminate__editor {
+  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+  padding: 1rem;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background: #1c1c1c;
+  color: #f8f8f8;
+  font-family: 'Source Code Pro';
+  font-size: .83rem;
+  overflow: auto;
+}
+
+.styledoc-theme-illuminate__editor:hover .styledoc-theme-illuminate__clippy {
+  opacity: 1;
+}
+
+.styledoc-theme-illuminate__code {
+  margin: 0;
+}
+
+.styledoc-theme-illuminate__clippy {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  opacity: 0;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.styledoc-theme-illuminate__clippy:active path {
+  transition: .2s ease;
+  fill: #dd3a0a;
+}
+
+.styledoc-theme-illuminate__clippy path {
+  transition: .2s ease 1s;
+  fill: #f8f8f8;
+}
+
+
+.styledoc-theme-illuminate__footer {
+  background: #1c1c1c;
+  color: #999;
+  text-align: center;
+  font-size: .85rem;
+  padding-bottom: 1rem;
+}
+
+.styledoc-theme-illuminate__powered-by {
+  font-weight: bold;
+}
+
+.styledoc-theme-illuminate__powered-by-link {
+  color: inherit;
+  text-decoration: none;
+  color: #dd3a0a;
+}
+
+.styledoc-code__attr {
+  color: #dd3a0a;
+}
+
+.styledoc-code__value {
+  color: #f3d37d;
+}
+</style>
+<style>
+.btn,
+.btn--small,
+.btn--large,
+.btn--square {
+    padding: .5em 1em;
+    border-radius: 3px;
+    background: #dd3a0a;
+    text-decoration: none;
+    color: #fff;
+    transition: .2s ease;
+}
+
+.btn:hover {
+  background: #b73008;
+}
+
+.btn--small {
+  font-size: .8rem;
+}
+
+.btn--small:hover {
+  background: #b73008
+}
+
+.btn--large {
+  font-size: 1.3rem;
+}
+
+.btn--large:hover {
+  background: #b73008
+}
+
+.btn--square {
+  display: table-cell;
+  width: 3em;
+  height: 3em;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.btn--square:hover {
+  background: #b73008
+}
+
+.card__box {
+  width: 15rem;
+  border: 1px solid #eee;
+  box-shadow: 3px 3px 5px -3px #bbb;
+}
+
+.card__header {
+  height: 12rem;
+}
+
+.card__user {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.card__img {
+  display: inline-block;
+  width: 40%;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+.card__body {
+  padding: 1em;
+  border-top: 1px solid #eee;
+}
+
+.img--default {
+  width: 8rem;
+  height: 8rem;
+}
+
+.img--square {
+  @extend .img--default;
+}
+
+.img--circle {
+  @extend .img--default;
+  border-radius: 50%;
+}
+
+.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }.card__box {
+      background: #fff;  
+    },.card__header {
+      background: url(//unsplash.it/300/?random);
+    }</style></head>
+<body>
+  <div class="styledoc-theme-illuminate__box">
+    <nav class="styledoc-theme-illuminate__gnavi">
+      <ul class="styledoc-theme-illuminate__list">
+        
+          <li class="styledoc-theme-illuminate__item">
+            <a class="styledoc-theme-illuminate__itemlink" href="#Button">Button</a>
+          </li>
+        
+          <li class="styledoc-theme-illuminate__item">
+            <a class="styledoc-theme-illuminate__itemlink" href="#Card">Card</a>
+          </li>
+        
+          <li class="styledoc-theme-illuminate__item">
+            <a class="styledoc-theme-illuminate__itemlink" href="#Image">Image</a>
+          </li>
+        
+      </ul>
+    </nav>
+
+    <main class="styledoc-theme-illuminate__main">
+      
+        <section id="Button" class="styledoc-theme-illuminate__section">
+          <div class="styledoc-theme-illuminate__inner">
+            <header class="styledoc-theme-illuminate__header">
+              <h1 class="styledoc-theme-illuminate__headline">Button</h1>
+            </header>
+            <div class="styledoc-theme-illuminate__body">
+              
+              
+              
+              
+                <div class="styledoc-theme-illuminate__block">
+                
+                  
+                  <div class="styledoc-theme-illuminate__node">
+                    <div class="styledoc-theme-illuminate__summary"><span>Medium button</span></div>
+                    <div class="styledoc-theme-illuminate__view"><a class="btn" href="#">Button</a></div>
+                    <div class="styledoc-theme-illuminate__editor">
+                      <pre class="styledoc-theme-illuminate__code">&lt;<span class="styledoc-code__tag">a</span> <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">btn</span>&quot; <span class="styledoc-code__attr styledoc-code__attr--href">href</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--href">#</span>&quot;&gt;Button&lt;<span class="styledoc-code__tag">/a</span>&gt;</pre>
+                      <svg class="styledoc-theme-illuminate__clippy" width="14px" height="16px" viewbox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Octicons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g id="clippy" fill="#000000"><path d="M2,13 L6,13 L6,14 L2,14 L2,13 L2,13 Z M7,7 L2,7 L2,8 L7,8 L7,7 L7,7 Z M9,10 L9,8 L6,11 L9,14 L9,12 L14,12 L14,10 L9,10 L9,10 Z M4.5,9 L2,9 L2,10 L4.5,10 L4.5,9 L4.5,9 Z M2,12 L4.5,12 L4.5,11 L2,11 L2,12 L2,12 Z M11,13 L12,13 L12,15 C11.98,15.28 11.89,15.52 11.7,15.7 C11.51,15.88 11.28,15.98 11,16 L1,16 C0.45,16 0,15.55 0,15 L0,4 C0,3.45 0.45,3 1,3 L4,3 C4,1.89 4.89,1 6,1 C7.11,1 8,1.89 8,3 L11,3 C11.55,3 12,3.45 12,4 L12,9 L11,9 L11,6 L1,6 L1,15 L11,15 L11,13 L11,13 Z M2,5 L10,5 C10,4.45 9.55,4 9,4 L8,4 C7.45,4 7,3.55 7,3 C7,2.45 6.55,2 6,2 C5.45,2 5,2.45 5,3 C5,3.55 4.55,4 4,4 L3,4 C2.45,4 2,4.45 2,5 L2,5 Z" id="Shape"/></g>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                
+                  
+                  <div class="styledoc-theme-illuminate__node">
+                    <div class="styledoc-theme-illuminate__summary"><span>Small button</span></div>
+                    <div class="styledoc-theme-illuminate__view"><a class="btn--small" href="#">Button</a></div>
+                    <div class="styledoc-theme-illuminate__editor">
+                      <pre class="styledoc-theme-illuminate__code">&lt;<span class="styledoc-code__tag">a</span> <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">btn--small</span>&quot; <span class="styledoc-code__attr styledoc-code__attr--href">href</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--href">#</span>&quot;&gt;Button&lt;<span class="styledoc-code__tag">/a</span>&gt;</pre>
+                      <svg class="styledoc-theme-illuminate__clippy" width="14px" height="16px" viewbox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Octicons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g id="clippy" fill="#000000"><path d="M2,13 L6,13 L6,14 L2,14 L2,13 L2,13 Z M7,7 L2,7 L2,8 L7,8 L7,7 L7,7 Z M9,10 L9,8 L6,11 L9,14 L9,12 L14,12 L14,10 L9,10 L9,10 Z M4.5,9 L2,9 L2,10 L4.5,10 L4.5,9 L4.5,9 Z M2,12 L4.5,12 L4.5,11 L2,11 L2,12 L2,12 Z M11,13 L12,13 L12,15 C11.98,15.28 11.89,15.52 11.7,15.7 C11.51,15.88 11.28,15.98 11,16 L1,16 C0.45,16 0,15.55 0,15 L0,4 C0,3.45 0.45,3 1,3 L4,3 C4,1.89 4.89,1 6,1 C7.11,1 8,1.89 8,3 L11,3 C11.55,3 12,3.45 12,4 L12,9 L11,9 L11,6 L1,6 L1,15 L11,15 L11,13 L11,13 Z M2,5 L10,5 C10,4.45 9.55,4 9,4 L8,4 C7.45,4 7,3.55 7,3 C7,2.45 6.55,2 6,2 C5.45,2 5,2.45 5,3 C5,3.55 4.55,4 4,4 L3,4 C2.45,4 2,4.45 2,5 L2,5 Z" id="Shape"/></g>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                
+                  
+                  <div class="styledoc-theme-illuminate__node">
+                    <div class="styledoc-theme-illuminate__summary"><span>Large button</span></div>
+                    <div class="styledoc-theme-illuminate__view"><a class="btn--large" href="#">Button</a></div>
+                    <div class="styledoc-theme-illuminate__editor">
+                      <pre class="styledoc-theme-illuminate__code">&lt;<span class="styledoc-code__tag">a</span> <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">btn--large</span>&quot; <span class="styledoc-code__attr styledoc-code__attr--href">href</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--href">#</span>&quot;&gt;Button&lt;<span class="styledoc-code__tag">/a</span>&gt;</pre>
+                      <svg class="styledoc-theme-illuminate__clippy" width="14px" height="16px" viewbox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Octicons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g id="clippy" fill="#000000"><path d="M2,13 L6,13 L6,14 L2,14 L2,13 L2,13 Z M7,7 L2,7 L2,8 L7,8 L7,7 L7,7 Z M9,10 L9,8 L6,11 L9,14 L9,12 L14,12 L14,10 L9,10 L9,10 Z M4.5,9 L2,9 L2,10 L4.5,10 L4.5,9 L4.5,9 Z M2,12 L4.5,12 L4.5,11 L2,11 L2,12 L2,12 Z M11,13 L12,13 L12,15 C11.98,15.28 11.89,15.52 11.7,15.7 C11.51,15.88 11.28,15.98 11,16 L1,16 C0.45,16 0,15.55 0,15 L0,4 C0,3.45 0.45,3 1,3 L4,3 C4,1.89 4.89,1 6,1 C7.11,1 8,1.89 8,3 L11,3 C11.55,3 12,3.45 12,4 L12,9 L11,9 L11,6 L1,6 L1,15 L11,15 L11,13 L11,13 Z M2,5 L10,5 C10,4.45 9.55,4 9,4 L8,4 C7.45,4 7,3.55 7,3 C7,2.45 6.55,2 6,2 C5.45,2 5,2.45 5,3 C5,3.55 4.55,4 4,4 L3,4 C2.45,4 2,4.45 2,5 L2,5 Z" id="Shape"/></g>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                
+                </div>
+              
+                <div class="styledoc-theme-illuminate__block">
+                
+                  
+                  <div class="styledoc-theme-illuminate__node">
+                    <div class="styledoc-theme-illuminate__summary"><span>Spuare button</span></div>
+                    <div class="styledoc-theme-illuminate__view"><a class="btn--square" href="#">Btn</a></div>
+                    <div class="styledoc-theme-illuminate__editor">
+                      <pre class="styledoc-theme-illuminate__code">&lt;<span class="styledoc-code__tag">a</span> <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">btn--square</span>&quot; <span class="styledoc-code__attr styledoc-code__attr--href">href</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--href">#</span>&quot;&gt;Btn&lt;<span class="styledoc-code__tag">/a</span>&gt;</pre>
+                      <svg class="styledoc-theme-illuminate__clippy" width="14px" height="16px" viewbox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Octicons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g id="clippy" fill="#000000"><path d="M2,13 L6,13 L6,14 L2,14 L2,13 L2,13 Z M7,7 L2,7 L2,8 L7,8 L7,7 L7,7 Z M9,10 L9,8 L6,11 L9,14 L9,12 L14,12 L14,10 L9,10 L9,10 Z M4.5,9 L2,9 L2,10 L4.5,10 L4.5,9 L4.5,9 Z M2,12 L4.5,12 L4.5,11 L2,11 L2,12 L2,12 Z M11,13 L12,13 L12,15 C11.98,15.28 11.89,15.52 11.7,15.7 C11.51,15.88 11.28,15.98 11,16 L1,16 C0.45,16 0,15.55 0,15 L0,4 C0,3.45 0.45,3 1,3 L4,3 C4,1.89 4.89,1 6,1 C7.11,1 8,1.89 8,3 L11,3 C11.55,3 12,3.45 12,4 L12,9 L11,9 L11,6 L1,6 L1,15 L11,15 L11,13 L11,13 Z M2,5 L10,5 C10,4.45 9.55,4 9,4 L8,4 C7.45,4 7,3.55 7,3 C7,2.45 6.55,2 6,2 C5.45,2 5,2.45 5,3 C5,3.55 4.55,4 4,4 L3,4 C2.45,4 2,4.45 2,5 L2,5 Z" id="Shape"/></g>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                
+                </div>
+              
+            </div>
+          </div>
+        </section>
+      
+        <section id="Card" class="styledoc-theme-illuminate__section">
+          <div class="styledoc-theme-illuminate__inner">
+            <header class="styledoc-theme-illuminate__header">
+              <h1 class="styledoc-theme-illuminate__headline">Card</h1>
+            </header>
+            <div class="styledoc-theme-illuminate__body">
+              
+              
+              
+              
+                <div class="styledoc-theme-illuminate__block">
+                
+                  
+                  <div class="styledoc-theme-illuminate__node">
+                    <div class="styledoc-theme-illuminate__summary"><span>Normal card</span></div>
+                    <div class="styledoc-theme-illuminate__view"><div class="card__box">
+    <header class="card__header"></header>
+    <div class="card__body">
+        <div class="card__summary">text text text</div>
+    </div>
+</div></div>
+                    <div class="styledoc-theme-illuminate__editor">
+                      <pre class="styledoc-theme-illuminate__code">&lt;<span class="styledoc-code__tag">div</span> <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">card__box</span>&quot;&gt;
+    &lt;<span class="styledoc-code__tag">header</span> <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">card__header</span>&quot;&gt;&lt;<span class="styledoc-code__tag">/header</span>&gt;
+    &lt;<span class="styledoc-code__tag">div</span> <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">card__body</span>&quot;&gt;
+        &lt;<span class="styledoc-code__tag">div</span> <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">card__summary</span>&quot;&gt;text text text&lt;<span class="styledoc-code__tag">/div</span>&gt;
+    &lt;<span class="styledoc-code__tag">/div</span>&gt;
+&lt;<span class="styledoc-code__tag">/div</span>&gt;</pre>
+                      <svg class="styledoc-theme-illuminate__clippy" width="14px" height="16px" viewbox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Octicons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g id="clippy" fill="#000000"><path d="M2,13 L6,13 L6,14 L2,14 L2,13 L2,13 Z M7,7 L2,7 L2,8 L7,8 L7,7 L7,7 Z M9,10 L9,8 L6,11 L9,14 L9,12 L14,12 L14,10 L9,10 L9,10 Z M4.5,9 L2,9 L2,10 L4.5,10 L4.5,9 L4.5,9 Z M2,12 L4.5,12 L4.5,11 L2,11 L2,12 L2,12 Z M11,13 L12,13 L12,15 C11.98,15.28 11.89,15.52 11.7,15.7 C11.51,15.88 11.28,15.98 11,16 L1,16 C0.45,16 0,15.55 0,15 L0,4 C0,3.45 0.45,3 1,3 L4,3 C4,1.89 4.89,1 6,1 C7.11,1 8,1.89 8,3 L11,3 C11.55,3 12,3.45 12,4 L12,9 L11,9 L11,6 L1,6 L1,15 L11,15 L11,13 L11,13 Z M2,5 L10,5 C10,4.45 9.55,4 9,4 L8,4 C7.45,4 7,3.55 7,3 C7,2.45 6.55,2 6,2 C5.45,2 5,2.45 5,3 C5,3.55 4.55,4 4,4 L3,4 C2.45,4 2,4.45 2,5 L2,5 Z" id="Shape"/></g>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                
+                  
+                  <div class="styledoc-theme-illuminate__node">
+                    <div class="styledoc-theme-illuminate__summary"><span>Card with user</span></div>
+                    <div class="styledoc-theme-illuminate__view"><div class="card__box">
+    <header class="card__header"></header>
+    <div class="card__body">
+        <div class="card__user">
+            <img src="//unsplash.it/300/?random" class="card__img">
+            <div class="card__username">username</div>
+        </div><span class="card__summary">text text text</span>
+    </div>
+</div></div>
+                    <div class="styledoc-theme-illuminate__editor">
+                      <pre class="styledoc-theme-illuminate__code">&lt;<span class="styledoc-code__tag">div</span> <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">card__box</span>&quot;&gt;
+    &lt;<span class="styledoc-code__tag">header</span> <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">card__header</span>&quot;&gt;&lt;<span class="styledoc-code__tag">/header</span>&gt;
+    &lt;<span class="styledoc-code__tag">div</span> <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">card__body</span>&quot;&gt;
+        &lt;<span class="styledoc-code__tag">div</span> <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">card__user</span>&quot;&gt;
+            &lt;<span class="styledoc-code__tag">img</span> <span class="styledoc-code__attr styledoc-code__attr--src">src</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--src">//unsplash.it/300/?random</span>&quot; <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">card__img</span>&quot;&gt;
+            &lt;<span class="styledoc-code__tag">div</span> <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">card__username</span>&quot;&gt;username&lt;<span class="styledoc-code__tag">/div</span>&gt;
+        &lt;<span class="styledoc-code__tag">/div&gt;&lt;span</span> <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">card__summary</span>&quot;&gt;text text text&lt;<span class="styledoc-code__tag">/span</span>&gt;
+    &lt;<span class="styledoc-code__tag">/div</span>&gt;
+&lt;<span class="styledoc-code__tag">/div</span>&gt;</pre>
+                      <svg class="styledoc-theme-illuminate__clippy" width="14px" height="16px" viewbox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Octicons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g id="clippy" fill="#000000"><path d="M2,13 L6,13 L6,14 L2,14 L2,13 L2,13 Z M7,7 L2,7 L2,8 L7,8 L7,7 L7,7 Z M9,10 L9,8 L6,11 L9,14 L9,12 L14,12 L14,10 L9,10 L9,10 Z M4.5,9 L2,9 L2,10 L4.5,10 L4.5,9 L4.5,9 Z M2,12 L4.5,12 L4.5,11 L2,11 L2,12 L2,12 Z M11,13 L12,13 L12,15 C11.98,15.28 11.89,15.52 11.7,15.7 C11.51,15.88 11.28,15.98 11,16 L1,16 C0.45,16 0,15.55 0,15 L0,4 C0,3.45 0.45,3 1,3 L4,3 C4,1.89 4.89,1 6,1 C7.11,1 8,1.89 8,3 L11,3 C11.55,3 12,3.45 12,4 L12,9 L11,9 L11,6 L1,6 L1,15 L11,15 L11,13 L11,13 Z M2,5 L10,5 C10,4.45 9.55,4 9,4 L8,4 C7.45,4 7,3.55 7,3 C7,2.45 6.55,2 6,2 C5.45,2 5,2.45 5,3 C5,3.55 4.55,4 4,4 L3,4 C2.45,4 2,4.45 2,5 L2,5 Z" id="Shape"/></g>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                
+                </div>
+              
+            </div>
+          </div>
+        </section>
+      
+        <section id="Image" class="styledoc-theme-illuminate__section">
+          <div class="styledoc-theme-illuminate__inner">
+            <header class="styledoc-theme-illuminate__header">
+              <h1 class="styledoc-theme-illuminate__headline">Image</h1>
+            </header>
+            <div class="styledoc-theme-illuminate__body">
+              
+              
+              
+              
+                <div class="styledoc-theme-illuminate__block">
+                
+                  
+                  <div class="styledoc-theme-illuminate__node">
+                    <div class="styledoc-theme-illuminate__summary"><span>Square</span></div>
+                    <div class="styledoc-theme-illuminate__view"><img src="//unsplash.it/200/?random" class="img--square"></div>
+                    <div class="styledoc-theme-illuminate__editor">
+                      <pre class="styledoc-theme-illuminate__code">&lt;<span class="styledoc-code__tag">img</span> <span class="styledoc-code__attr styledoc-code__attr--src">src</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--src">//unsplash.it/200/?random</span>&quot; <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">img--square</span>&quot;&gt;</pre>
+                      <svg class="styledoc-theme-illuminate__clippy" width="14px" height="16px" viewbox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Octicons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g id="clippy" fill="#000000"><path d="M2,13 L6,13 L6,14 L2,14 L2,13 L2,13 Z M7,7 L2,7 L2,8 L7,8 L7,7 L7,7 Z M9,10 L9,8 L6,11 L9,14 L9,12 L14,12 L14,10 L9,10 L9,10 Z M4.5,9 L2,9 L2,10 L4.5,10 L4.5,9 L4.5,9 Z M2,12 L4.5,12 L4.5,11 L2,11 L2,12 L2,12 Z M11,13 L12,13 L12,15 C11.98,15.28 11.89,15.52 11.7,15.7 C11.51,15.88 11.28,15.98 11,16 L1,16 C0.45,16 0,15.55 0,15 L0,4 C0,3.45 0.45,3 1,3 L4,3 C4,1.89 4.89,1 6,1 C7.11,1 8,1.89 8,3 L11,3 C11.55,3 12,3.45 12,4 L12,9 L11,9 L11,6 L1,6 L1,15 L11,15 L11,13 L11,13 Z M2,5 L10,5 C10,4.45 9.55,4 9,4 L8,4 C7.45,4 7,3.55 7,3 C7,2.45 6.55,2 6,2 C5.45,2 5,2.45 5,3 C5,3.55 4.55,4 4,4 L3,4 C2.45,4 2,4.45 2,5 L2,5 Z" id="Shape"/></g>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                
+                  
+                  <div class="styledoc-theme-illuminate__node">
+                    <div class="styledoc-theme-illuminate__summary"><span>Circle</span></div>
+                    <div class="styledoc-theme-illuminate__view"><img src="//unsplash.it/200/?random" class="img--circle"></div>
+                    <div class="styledoc-theme-illuminate__editor">
+                      <pre class="styledoc-theme-illuminate__code">&lt;<span class="styledoc-code__tag">img</span> <span class="styledoc-code__attr styledoc-code__attr--src">src</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--src">//unsplash.it/200/?random</span>&quot; <span class="styledoc-code__attr styledoc-code__attr--class">class</span>=&quot;<span class="styledoc-code__value styledoc-code__attr--class">img--circle</span>&quot;&gt;</pre>
+                      <svg class="styledoc-theme-illuminate__clippy" width="14px" height="16px" viewbox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Octicons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g id="clippy" fill="#000000"><path d="M2,13 L6,13 L6,14 L2,14 L2,13 L2,13 Z M7,7 L2,7 L2,8 L7,8 L7,7 L7,7 Z M9,10 L9,8 L6,11 L9,14 L9,12 L14,12 L14,10 L9,10 L9,10 Z M4.5,9 L2,9 L2,10 L4.5,10 L4.5,9 L4.5,9 Z M2,12 L4.5,12 L4.5,11 L2,11 L2,12 L2,12 Z M11,13 L12,13 L12,15 C11.98,15.28 11.89,15.52 11.7,15.7 C11.51,15.88 11.28,15.98 11,16 L1,16 C0.45,16 0,15.55 0,15 L0,4 C0,3.45 0.45,3 1,3 L4,3 C4,1.89 4.89,1 6,1 C7.11,1 8,1.89 8,3 L11,3 C11.55,3 12,3.45 12,4 L12,9 L11,9 L11,6 L1,6 L1,15 L11,15 L11,13 L11,13 Z M2,5 L10,5 C10,4.45 9.55,4 9,4 L8,4 C7.45,4 7,3.55 7,3 C7,2.45 6.55,2 6,2 C5.45,2 5,2.45 5,3 C5,3.55 4.55,4 4,4 L3,4 C2.45,4 2,4.45 2,5 L2,5 Z" id="Shape"/></g>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                
+                </div>
+              
+            </div>
+          </div>
+        </section>
+      
+    </main>
+  </div>
+  <footer class="styledoc-theme-illuminate__footer">
+    <span class="styledoc-theme-illuminate__powered-by">
+      Powered by <a class="styledoc-theme-illuminate__powered-by-link" href="https://github.com/totora0155/postcss-styledoc">postcss-styledoc</a>
+    </span>
+  </footer>
+<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+<script>
+new Clipboard('.styledoc-theme-illuminate__clippy', {
+  text: function(trigger) {
+    return trigger.parentElement.previousElementSibling.innerHTML;
+  }
+});
+</script>
+</body>
+</html>
