@@ -20,7 +20,6 @@
     "lodash": "^4.13.1",
     "postcss": "^5.0.10",
     "selector-parse": "^0.3.2",
-    "sugarss": "^0.1.4",
     "through2": "^2.0.1"
   },
   "devDependencies": {
@@ -51,7 +50,6 @@
     "postcss-namespace": "^1.1.0",
     "postcss-preref": "^1.0.0",
     "postcss-pxtorem": "^3.3.1",
-    "selector-parse": "^0.3.2",
     "xo": "^0.16.0"
   },
   "homepage": "https://github.com/totora0155/postcss-styledoc#readme",
