@@ -10,9 +10,9 @@ gulp.task('css', () => {
   gulp.src(['**/*.css', '!dist/vender/**'], {cwd: 'src'})
     .pipe(plumber())
     .pipe(postcss([
+      preref,
       matter,
       namespace.bem,
-      preref,
       styledoc({themePath: styledoc.themes.ILLUMINATE})
     ]))
     .pipe(gulp.dest('./dist'))
@@ -28,6 +28,6 @@ gulp.task('default', ['css'], () => {
   gulp.watch([
     'src/**/*.css',
     'styledoc/**/*.css',
-    '../../themes/illuminate/style.css'
+    '../../themes/illuminate/**/*.+(html|css)'
   ], ['css']);
 });

@@ -6,6 +6,8 @@
       Small button;
     a.btn--large[innerText="Button"]:
       Large button;
+    a.btn--square[innerText="Btn"]:
+      Spuare button;
   }
 }
 
@@ -18,6 +20,10 @@
     color: #fff;
     transition: .2s ease;
   }
+
+  btn-hover {
+    background: #b73008;
+  }
 }
 
 .btn {
@@ -25,19 +31,39 @@
 }
 
 &:hover {
-   background: #b73008;
+  matter: btn-hover;
 }
 
-.btn--small {
+&--small {
   matter: btn;
   font-size: .8rem;
 }
 
-.btn--large {
+&--small:hover {
+  matter: btn-hover
+}
+
+&--large {
   matter: btn;
   font-size: 1.3rem;
 }
 
+&--large:hover {
+  matter: btn-hover
+}
+
+&--square {
+  matter: btn;
+  display: table-cell;
+  width: 3em;
+  height: 3em;
+  vertical-align: middle;
+  text-align: center;
+}
+
+&--square:hover {
+  matter: btn-hover
+}
 
 @styledoc Card {
   @html {
@@ -49,6 +75,11 @@
 
   @css {
     @prefix card;
+
+    .box {
+      background: #fff;  
+    }
+
     .header {
       background: url(//unsplash.it/300/?random);
     }
