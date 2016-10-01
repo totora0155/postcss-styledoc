@@ -8,6 +8,10 @@
 
 ---
 
+Change repo to [https://github.com/nju33/postcss-styledoc](https://github.com/nju33/postcss-styledoc)
+
+---
+
 ## Install
 
 ```
